@@ -1,7 +1,7 @@
-(ns fleet.sim
+(ns za-actor.sim
   "Capstone: many agents coordinate on ONE repo through the fleet — no git
   conflict. This wires every piece of the stack end-to-end (kotoba-fleet agent +
-  fleet.runner capturing host + this actor's coordinator ⊣ FleetGovernor +
+  za-actor.runner capturing host + this actor's coordinator ⊣ FleetGovernor +
   kotoba-fleet view), demonstrating ADR-2606302000's thesis WITHOUT external
   creds (mock coding sessions, in-memory store).
 
@@ -18,8 +18,8 @@
   One governed coordinator is the only writer to git; agents only ever append
   leases + proposals. Run: clojure -M:dev:run"
   (:require [langgraph.graph :as g]
-            [fleet.actor :as actor]
-            [fleet.runner :as runner]
+            [za-actor.actor :as actor]
+            [za-actor.runner :as runner]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]
             [kotoba.fleet.view :as view]

@@ -1,8 +1,8 @@
-(ns fleet.node-test
-  "The launcher's role dispatch (fleet.node/run!) drives the node loop over a
+(ns za-actor.node-test
+  "The launcher's role dispatch (za-actor.node/run!) drives the node loop over a
   store — the same core -main uses, exercised without env/stdout."
   (:require [clojure.test :refer [deftest is testing]]
-            [fleet.node :as node]
+            [za-actor.node :as node]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]
             [kotoba.fleet.store :as store]))

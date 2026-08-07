@@ -1,4 +1,4 @@
-(ns fleet.governor
+(ns za-actor.governor
   "FleetGovernor — the independent censor that earns the coordinator the right to
   materialize a write to git. Different system from the coordinator (that is the
   whole point of the actor pattern). It enforces the single fleet invariant:

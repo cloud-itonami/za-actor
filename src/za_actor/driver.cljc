@@ -1,4 +1,4 @@
-(ns fleet.driver
+(ns za-actor.driver
   "Durable outer loop + multi-node roles (ADR-2606302000 F1/F2/F4).
 
   A StateGraph models ONE coordination tick; THIS is the repeating driver around
@@ -20,7 +20,7 @@
   (TTL) and its work reopens; all state is the append-only log (persisted on the
   kotoba-db backend, so recovery survives process/machine restarts)."
   (:require [langgraph.graph :as g]
-            [fleet.actor :as actor]
+            [za-actor.actor :as actor]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]
             [kotoba.fleet.lease :as lease]))
