@@ -1,10 +1,10 @@
-(ns fleet.runner-test
+(ns za-actor.runner-test
   "The kotoba-code seam: a coding session's writes are CAPTURED as a proposal
   payload (never a git write), and that payload flows through the fleet agent
   into a governed proposal. The session is mocked here (the real kotoba-code
   build-agent+run-task plugs into the same `:session!` slot)."
   (:require [clojure.test :refer [deftest is testing]]
-            [fleet.runner :as runner]
+            [za-actor.runner :as runner]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]
             [kotoba.fleet.store :as store]))

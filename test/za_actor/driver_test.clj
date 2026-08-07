@@ -1,9 +1,9 @@
-(ns fleet.driver-test
+(ns za-actor.driver-test
   "The durable outer loop: a bounded, crash-recoverable node that drains a work
   queue through the fleet, and recovers a crashed agent's work via lease TTL —
   no bespoke recovery code, just the append-only log."
   (:require [clojure.test :refer [deftest is testing]]
-            [fleet.driver :as driver]
+            [za-actor.driver :as driver]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]
             [kotoba.fleet.lease :as lease]

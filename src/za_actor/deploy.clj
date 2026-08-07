@@ -1,26 +1,26 @@
-(ns fleet.deploy
+(ns za-actor.deploy
   "Deploy entrypoint — wires a REAL Murakumo-fleet LLM (langchain.model
   OpenAI-compatible against the local Ollama, gemma-4-E4B) into
-  `fleet.advisor/llm-picker` and drains a small pending-proposal queue
+  `za-actor.advisor/llm-picker` and drains a small pending-proposal queue
   through ONE FleetCoordinatorActor end to end (pick -> govern ->
   materialize/hold/sign-off).
 
   Same shape as `tashikame.deploy`/`kouhou.deploy`/`yosoku.deploy`: this only
   proves the real-LLM -> FleetGovernor path against the live Murakumo model.
-  `:materialize` stays a MOCK (in-memory) here, same as `fleet.sim`'s own
+  `:materialize` stays a MOCK (in-memory) here, same as `za-actor.sim`'s own
   capstone demo — fleet's real materialize hook is a live git writer, and
   flipping that on is an operational decision well outside proving the
   picker wiring, not something this entrypoint does.
 
-  Usage: clojure -M:dev -m fleet.deploy
+  Usage: clojure -M:dev -m za-actor.deploy
   Env:   FLEET_OLLAMA_URL (default http://127.0.0.1:11434)
          FLEET_OLLAMA_MODEL (default gemma-4-E4B qat)"
   (:require [clojure.data.json :as json]
             [clojure.string :as str]
             [langchain.model :as model]
             [langgraph.graph :as g]
-            [fleet.actor :as actor]
-            [fleet.advisor :as advisor]
+            [za-actor.actor :as actor]
+            [za-actor.advisor :as advisor]
             [kotoba.fleet.governor :as kgov]
             [kotoba.fleet.lease :as lease]
             [kotoba.fleet.store :as store])

@@ -1,11 +1,11 @@
-(ns fleet.run
+(ns za-actor.run
   "Demo: set up a fleet Datom log, have agents lease work + submit proposals, and
   drive the FleetCoordinatorActor through coordination ticks that exercise the
   invariant — accept (lease-held), hold (non-holder), sign-off (protected path).
 
   Run: clojure -M:dev:run"
   (:require [langgraph.graph :as g]
-            [fleet.actor :as actor]
+            [za-actor.actor :as actor]
             [kotoba.fleet.governor :as kgov]
             [kotoba.fleet.lease :as lease]
             [kotoba.fleet.store :as store]))

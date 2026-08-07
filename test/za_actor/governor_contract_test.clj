@@ -1,11 +1,11 @@
-(ns fleet.governor-contract-test
+(ns za-actor.governor-contract-test
   "The fleet invariant: the FleetCoordinatorActor NEVER materializes a write the
   FleetGovernor would reject. A write reaches git ONLY IF the proposing agent
   holds the lease, the gate passes, and (for protected paths) a human signs off."
   (:require [clojure.test :refer [deftest is testing]]
             [langgraph.graph :as g]
-            [fleet.actor :as actor]
-            [fleet.governor :as gov]
+            [za-actor.actor :as actor]
+            [za-actor.governor :as gov]
             [kotoba.fleet.governor :as kgov]
             [kotoba.fleet.lease :as lease]
             [kotoba.fleet.store :as store]))

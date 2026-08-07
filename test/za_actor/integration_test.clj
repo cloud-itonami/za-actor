@@ -1,9 +1,9 @@
-(ns fleet.integration-test
+(ns za-actor.integration-test
   "End-to-end: the whole fleet stack (agent → runner → coordinator ⊣ FleetGovernor
   → view) upholds ADR-2606302000's thesis — many agents share one repo, and every
-  git write is governed. This is the capstone regression for `fleet.sim`."
+  git write is governed. This is the capstone regression for `za-actor.sim`."
   (:require [clojure.test :refer [deftest is testing]]
-            [fleet.sim :as sim]
+            [za-actor.sim :as sim]
             [kotoba.fleet.view :as view]))
 
 (deftest many-agents-one-repo-no-conflict

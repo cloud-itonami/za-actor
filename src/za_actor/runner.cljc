@@ -1,4 +1,4 @@
-(ns fleet.runner
+(ns za-actor.runner
   "kotoba-code integration seam — turn a bounded coding session into the fleet
   agent's injected `run` fn (kotoba.fleet.agent/claim-and-propose! `:run`).
 

@@ -1,8 +1,8 @@
-(ns fleet.worktree
+(ns za-actor.worktree
   "Per-agent git worktree isolation (ADR-2606302000 F3). Each agent reads and
   test-runs against its OWN detached checkout, so even reads and test runs never
   collide across the ~20 parallel agents — and the repo's main working tree is
-  never touched. Writes still flow out as captured proposals (fleet.runner); the
+  never touched. Writes still flow out as captured proposals (za-actor.runner); the
   worktree is the isolated place a coding session READS current files and a gate
   VERIFIES the captured edits before they're proposed.
 
@@ -12,7 +12,7 @@
   (:require [clojure.java.shell :as sh]
             [clojure.java.io :as io]
             [clojure.string :as str]
-            [fleet.runner :as runner]))
+            [za-actor.runner :as runner]))
 
 (defn- git [repo & args]
   (let [r (apply sh/sh "git" "-C" repo args)]
@@ -43,7 +43,7 @@
 
 (defn read-files
   "Read `paths` (repo-relative) from worktree `dir` → {path→content}; a missing
-  file maps to nil. Serves as the capturing host's `base` (fleet.runner)."
+  file maps to nil. Serves as the capturing host's `base` (za-actor.runner)."
   [dir paths]
   (into {} (for [p paths :let [f (io/file dir p)]]
              [p (when (.exists f) (slurp f))])))
@@ -73,7 +73,7 @@
 
 (defn worktree-run
   "A fleet `run` fn (for kotoba.fleet.agent) that isolates each coding session in
-  its OWN worktree — the F3 integration with fleet.runner. Per work-unit: open a
+  its OWN worktree — the F3 integration with za-actor.runner. Per work-unit: open a
   fresh worktree, read the unit's file-set as the capturing host's base, run the
   injected `:session!`, optionally GATE the captured writes by running `:test-cmd`
   in that worktree, and return the writes as the proposal payload (nil on a red

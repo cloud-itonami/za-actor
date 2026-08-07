@@ -1,18 +1,18 @@
-(ns fleet.advisor-test
+(ns za-actor.advisor-test
   "`mock-picker`/`llm-picker` unit tests use plain proposal maps (the picker
   only ever reads `:proposal/id`/`:proposal/work`/`:proposal/agent` — no
   store dependency). `llm-picker`'s tests use `langchain.model/mock-model`
   (fully offline/deterministic, no network) — they prove the wiring, prompt
   building, and fallback-to-mock-picker behavior, NOT anything about a live
   Murakumo endpoint. The final integration test wires `llm-picker` into a
-  real `fleet.actor/build` graph against `kotoba.fleet.governor`-backed
+  real `za-actor.actor/build` graph against `kotoba.fleet.governor`-backed
   proposals to prove the governor still gates identically no matter which
   proposal the picker chose."
   (:require [clojure.test :refer [deftest is testing]]
             [langchain.model :as model]
             [langgraph.graph :as g]
-            [fleet.actor :as actor]
-            [fleet.advisor :as advisor]
+            [za-actor.actor :as actor]
+            [za-actor.advisor :as advisor]
             [kotoba.fleet.governor :as kgov]
             [kotoba.fleet.lease :as lease]
             [kotoba.fleet.store :as store]))

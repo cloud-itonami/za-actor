@@ -1,4 +1,4 @@
-(ns fleet.coordinator
+(ns za-actor.coordinator
   "The *contained intelligence node*. It proposes which pending agent-write to
   advance next — a PROPOSAL only, never a materialization. Here it is a
   deterministic mock (earliest pending proposal in causal order); swap in an LLM

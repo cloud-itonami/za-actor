@@ -1,10 +1,10 @@
-(ns fleet.worktree-test
+(ns za-actor.worktree-test
   "F3 isolation: a worktree gives an agent its own checkout to read/test against;
   the main tree is never touched, and a gate run is discarded with the worktree."
   (:require [clojure.test :refer [deftest is testing]]
             [clojure.java.io :as io]
             [clojure.java.shell :as sh]
-            [fleet.worktree :as wt]))
+            [za-actor.worktree :as wt]))
 
 (defn- temp-repo []
   (let [dir (str (System/getProperty "java.io.tmpdir") "fleet-wt-" (System/nanoTime))]

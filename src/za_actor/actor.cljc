@@ -1,4 +1,4 @@
-(ns fleet.actor
+(ns za-actor.actor
   "FleetCoordinatorActor — one supervised coordinator = one langgraph-clj
   StateGraph. The coordinator intelligence node is sealed into `:coordinate`;
   its pick is ALWAYS routed through the FleetGovernor before anything is
@@ -13,8 +13,8 @@
   append-only ledger of every decision."
   (:require [langgraph.graph :as g]
             [langgraph.checkpoint :as cp]
-            [fleet.coordinator :as coord]
-            [fleet.governor :as gov]
+            [za-actor.coordinator :as coord]
+            [za-actor.governor :as gov]
             [kotoba.fleet.governor :as kgov]))
 
 (defn build

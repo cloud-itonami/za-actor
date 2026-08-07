@@ -20,11 +20,11 @@ contention, and exactly one node runs the governor. This is the runbook.
           murakumo `bb fleet <log.edn>` — coordination-plane view over the graph
 ```
 
-- **Every node** runs `fleet.driver/agent-round!` in a loop: its ~10 agents claim
+- **Every node** runs `za-actor.driver/agent-round!` in a loop: its ~10 agents claim
   open work, run a bounded kotoba-code session in an isolated **worktree**
-  (`fleet.worktree/worktree-run`), and append proposals. Losers of the optimistic
+  (`za-actor.worktree/worktree-run`), and append proposals. Losers of the optimistic
   claim back off — no lock server.
-- **Exactly one node** runs `fleet.driver/govern!`: the FleetCoordinatorActor
+- **Exactly one node** runs `za-actor.driver/govern!`: the FleetCoordinatorActor
   drains proposals, materializes accepted writes to git (the single writer),
   closes the work-units, releases leases. Protected paths pause for human sign-off.
 - **The shared graph is the only coordination substrate.** kotobase.net stores it
@@ -65,13 +65,13 @@ bb up all
 FLEET_GRAPH=k51q…            # shared IPNS name
 FLEET_ROLE=agent             # or `governor` on exactly one node
 OR_KEY=…                     # OpenRouter (or murakumo: local gateway) for kotoba-code
-clojure -M:dev -m fleet.node   # loops agent-round! (agent) / govern! (governor)
+clojure -M:dev -m za-actor.node   # loops agent-round! (agent) / govern! (governor)
 
 # watch the whole fleet from the operator laptop:
 bb fleet <(kotoba graph export $FLEET_GRAPH)   # kotoba.fleet.view snapshot
 ```
 
-`fleet.node/-main` is the env-driven launcher: it reads `FLEET_ROLE` /
+`za-actor.node/-main` is the env-driven launcher: it reads `FLEET_ROLE` /
 `FLEET_AGENTS` / `FLEET_GRAPH` / `OR_KEY`, builds the store + run fn, and runs the
 matching role for one bounded round (`run-role!`). The default no-creds path is a
 local smoke; production sets `FLEET_GRAPH` + `OR_KEY` and wires the kotoba-db
@@ -100,7 +100,7 @@ murakumo bb reconcile murakumo.app.edn --apply          # add a :manifest entry 
 `:requires #{:cap/datom}`.
 
 **Governor (exactly one) — a host process.** The single git writer can't be a
-WASM guest; run it host-side on one node via `fleet.node` role=governor. This is
+WASM guest; run it host-side on one node via `za-actor.node` role=governor. This is
 the only place the LaunchAgent/systemd unit is used:
 
 ```bash

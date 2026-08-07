@@ -1,4 +1,4 @@
-(ns fleet.node
+(ns za-actor.node
   "Env-driven launcher for ONE fleet node (ADR-2606302000 F4 deployment glue).
 
   A node reads its config from the environment, then executes its role for one
@@ -14,19 +14,19 @@
 
   The default path (no FLEET_GRAPH / OR_KEY) is a self-contained local smoke test:
   in-memory store + an echo `run` fn, seeded with demo work, so `clojure -M:dev -m
-  fleet.node` drains a queue and prints — no creds, no network.
+  za-actor.node` drains a queue and prints — no creds, no network.
 
   PRODUCTION wiring (the creds step, see docs/DEPLOY.md) constructs the two
   injections and calls `run-role!` directly:
 
     (require '[kotoba.fleet.kotoba-store :as ks] '[langchain.kotoba-db :as kdb]
-             '[fleet.worktree :as wt])
+             '[za-actor.worktree :as wt])
     (def db  (ks/db-api-store {:api (kdb/kotoba-api host-caps)
                                :conn (kdb/kotoba-conn url FLEET_GRAPH {:cacao … :did …})}))
     (def run (wt/worktree-run repo {:session! kotoba-code-session :test-cmd [\"clojure\" \"-M:test\"]}))
-    (fleet.node/run-role! db {:role :agent :agents [\"pc1-a1\" …] :run run :now (now-ms)})"
+    (za-actor.node/run-role! db {:role :agent :agents [\"pc1-a1\" …] :run run :now (now-ms)})"
   (:require [clojure.string :as str]
-            [fleet.driver :as driver]
+            [za-actor.driver :as driver]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]
             [kotoba.fleet.store :as store]
@@ -71,7 +71,7 @@
         db     (store/mem-store)]
     (when (System/getenv "FLEET_GRAPH")
       (println "note: FLEET_GRAPH set, but this launcher runs the local in-memory smoke path;")
-      (println "      wire the kotoba-db backend + kotoba-code session and call fleet.node/run-role! (see ns doc)."))
+      (println "      wire the kotoba-db backend + kotoba-code session and call za-actor.node/run-role! (see ns doc)."))
     (println (str "fleet node '" node "' role=" role " agents=" (str/join "," agents) " (local smoke)\n"))
     ;; seed a demo work queue
     (doseq [u ["src/a.clj" "src/b.clj" "src/c.clj" "manifest/west.yml" "src/d.clj"]]

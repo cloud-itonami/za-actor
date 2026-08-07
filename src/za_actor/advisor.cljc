@@ -1,8 +1,8 @@
-(ns fleet.advisor
-  "The *contained intelligence node* for `fleet.coordinator/propose`'s
+(ns za-actor.advisor
+  "The *contained intelligence node* for `za-actor.coordinator/propose`'s
   `:advise` injection — `(fn [pending-proposals] -> chosen-or-nil)`. Unlike
   yosoku/tashikame/kouhou's `Advisor` protocol, `coord/propose` only ever
-  wants a bare picker fn (see `fleet.coordinator`'s own docstring: \"swap in
+  wants a bare picker fn (see `za-actor.coordinator`'s own docstring: \"swap in
   an LLM advisor via the `:advise` injection\"), so this namespace matches
   that existing shape rather than introducing a protocol this repo never
   asked for.
@@ -11,7 +11,7 @@
   ALREADY-PENDING proposal to advance next; it never drafts a proposal's
   `:work`/`:agent`/`:payload` (those come from the agent's own lease + coding
   session, upstream of the coordinator entirely) and it never bypasses
-  `fleet.governor`/`kotoba.fleet.governor` — a protected-path proposal still
+  `za-actor.governor`/`kotoba.fleet.governor` — a protected-path proposal still
   pauses for human sign-off, a lease-expired proposal is still held, no
   matter which proposal the picker chose first. `mock-picker` reproduces
   `coord/propose`'s own default (earliest pending, i.e. `first`) so tests can
@@ -121,7 +121,7 @@ prose, no code fences:
   "Returns a `(fn [pending] -> chosen-or-nil)` backed by `chat-model`. Falls
   back to `mock-picker`'s earliest-first default on an empty `pending`, a
   hallucinated/unparseable LLM answer, or a chat-model error (fail-safe:
-  triage order degrading to FIFO is always safe: `fleet.governor` gates the
+  triage order degrading to FIFO is always safe: `za-actor.governor` gates the
   chosen proposal identically no matter how it was picked). gen-opts ->
   `model/-generate` opts (e.g. `{:max-tokens 256}`)."
   ([chat-model] (llm-picker chat-model {}))
