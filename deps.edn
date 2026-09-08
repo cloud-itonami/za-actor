@@ -4,7 +4,12 @@
  ;; (both .cljc, portable). kotoba-fleet provides the lease/governor/ledger
  ;; primitives; this repo seals a coordinator intelligence node behind an
  ;; independent FleetGovernor on a StateGraph.
- :deps {io.github.com-junkawasaki/langgraph-clj
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       io.github.com-junkawasaki/langgraph-clj
         {:local/root "../../kotoba-lang/langgraph"}
         io.github.kotoba-lang/kotoba-fleet
         {:local/root "../../kotoba-lang/kotoba-fleet"}

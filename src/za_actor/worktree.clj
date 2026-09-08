@@ -11,7 +11,7 @@
   are removed after use."
   (:require [clojure.java.shell :as sh]
             [clojure.java.io :as io]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [za-actor.runner :as runner]))
 
 (defn- git [repo & args]
