@@ -21,7 +21,7 @@
   langchain-clj — the lib is at com-junkawasaki/langchain-clj), and a live model
   needs OR_KEY (OpenRouter) or the local Murakumo gateway. The seam below is
   ready; only the injected `:session!` needs those resolved."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn capturing-host
   "A kotoba-code capability host whose `:write-file` CAPTURES edits into

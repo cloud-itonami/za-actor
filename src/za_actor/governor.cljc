@@ -8,7 +8,7 @@
     paths additionally require human sign-off.
 
   Everything else is HELD (append-only), never silently dropped or overwritten."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [kotoba.fleet.lease :as lease]))
 
 (def default-policy

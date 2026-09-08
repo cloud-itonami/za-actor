@@ -25,7 +25,7 @@
                                :conn (kdb/kotoba-conn url FLEET_GRAPH {:cacao … :did …})}))
     (def run (wt/worktree-run repo {:session! kotoba-code-session :test-cmd [\"clojure\" \"-M:test\"]}))
     (za-actor.node/run-role! db {:role :agent :agents [\"pc1-a1\" …] :run run :now (now-ms)})"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [za-actor.driver :as driver]
             [kotoba.fleet.agent :as agent]
             [kotoba.fleet.governor :as gov]

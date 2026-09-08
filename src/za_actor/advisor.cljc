@@ -22,7 +22,7 @@
   `yosoku.advisor`."
   (:require #?(:clj  [clojure.edn :as edn]
                :cljs [cljs.reader :as edn])
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [langchain.model :as model]))
 
 (defn mock-picker
