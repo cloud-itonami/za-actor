@@ -16,7 +16,7 @@
   Env:   FLEET_OLLAMA_URL (default http://127.0.0.1:11434)
          FLEET_OLLAMA_MODEL (default gemma-4-E4B qat)"
   (:require [kotoba.net.jvm-host :as jvm-host]
-            [clojure.data.json :as json]
+            [json.data-json :as json]
             [kotoba.lang.text :as str]
             [langchain.model :as model]
             [langgraph.graph :as g]
