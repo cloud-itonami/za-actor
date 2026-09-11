@@ -16,7 +16,7 @@
                                              → loses the optimistic claim, never even runs (lock-free exclusion)
 
   One governed coordinator is the only writer to git; agents only ever append
-  leases + proposals. Run: clojure -M:dev:run"
+  leases + proposals. Run: kbb -M:dev:run"
   (:require [langgraph.graph :as g]
             [za-actor.actor :as actor]
             [za-actor.runner :as runner]

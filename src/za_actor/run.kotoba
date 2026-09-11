@@ -3,7 +3,7 @@
   drive the FleetCoordinatorActor through coordination ticks that exercise the
   invariant — accept (lease-held), hold (non-holder), sign-off (protected path).
 
-  Run: clojure -M:dev:run"
+  Run: kbb -M:dev:run"
   (:require [langgraph.graph :as g]
             [za-actor.actor :as actor]
             [kotoba.fleet.governor :as kgov]

@@ -13,7 +13,7 @@
     OR_KEY        OpenRouter key               (→ live kotoba-code session)
 
   The default path (no FLEET_GRAPH / OR_KEY) is a self-contained local smoke test:
-  in-memory store + an echo `run` fn, seeded with demo work, so `clojure -M:dev -m
+  in-memory store + an echo `run` fn, seeded with demo work, so `kbb -M:dev -m
   za-actor.node` drains a queue and prints — no creds, no network.
 
   PRODUCTION wiring (the creds step, see docs/DEPLOY.md) constructs the two
