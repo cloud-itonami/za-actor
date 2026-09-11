@@ -12,7 +12,7 @@
   flipping that on is an operational decision well outside proving the
   picker wiring, not something this entrypoint does.
 
-  Usage: clojure -M:dev -m za-actor.deploy
+  Usage: kbb -M:dev -m za-actor.deploy
   Env:   FLEET_OLLAMA_URL (default http://127.0.0.1:11434)
          FLEET_OLLAMA_MODEL (default gemma-4-E4B qat)"
   (:require [kotoba.net.jvm-host :as jvm-host]

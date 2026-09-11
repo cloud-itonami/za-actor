@@ -10,5 +10,5 @@ After=network-online.target
 Type=oneshot
 WorkingDirectory=%h/fleet/com-etzhayyim-fleet
 EnvironmentFile=%h/.config/fleet-node/%i.env
-ExecStart=/usr/bin/env clojure -M:dev -m fleet.node
+ExecStart=/usr/bin/env kbb -M:dev -m fleet.node
 Nice=10

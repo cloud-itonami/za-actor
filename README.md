@@ -51,7 +51,7 @@ StateGraph, with an append-only audit ledger.
 - **Node launcher** (`za-actor.node`) — env-driven entry point (`FLEET_ROLE` /
   `FLEET_AGENTS` / `FLEET_BUDGET` / `FLEET_GRAPH` / `OR_KEY`). `run-role!`
   dispatches `:agent`/`:governor`/`:both`; `-main` is a self-contained local
-  smoke (in-memory store + echo run, seeded queue — `clojure -M:dev -m
+  smoke (in-memory store + echo run, seeded queue — `kbb -M:dev -m
   za-actor.node`). Production wires the kotoba-db store + a kotoba-code session and
   calls `run-role!` (see the ns doc + `docs/DEPLOY.md`).
 - **kotoba-native residency** (`deploy/kotoba/`) — the ~20 agents run **through
@@ -69,9 +69,9 @@ ADR-2607010900 (this actor).
 ## Build
 
 ```bash
-clojure -M:lint       # clj-kondo (errors fail)
-clojure -M:dev:test   # contract + integration tests (langchain-clj pinned to local checkout)
-clojure -M:dev:run    # capstone: 8 agents, 1 repo, one governed writer (za-actor.sim)
+kbb -M:lint       # clj-kondo (errors fail)
+kbb -M:dev:test   # contract + integration tests (langchain-clj pinned to local checkout)
+kbb -M:dev:run    # capstone: 8 agents, 1 repo, one governed writer (za-actor.sim)
 ```
 
 `za-actor.sim` is the end-to-end capstone: 8 agents across 2 PCs coordinate on one

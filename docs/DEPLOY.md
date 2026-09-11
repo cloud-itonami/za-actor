@@ -17,7 +17,7 @@ contention, and exactly one node runs the governor. This is the runbook.
         │ ~10 agents    │       │ ~10 agents   │            │ FleetCoordinatorActor│
         │ durable driver│       │ durable driver│           │ → git single writer  │
         └───────────────┘       └──────────────┘            └──────────────────────┘
-          murakumo `bb fleet <log.edn>` — coordination-plane view over the graph
+          murakumo `kbb -M:fleet <log.edn>` — coordination-plane view over the graph
 ```
 
 - **Every node** runs `za-actor.driver/agent-round!` in a loop: its ~10 agents claim
@@ -54,21 +54,21 @@ governor node the same plus write access to the repo it materializes into.
 ## Provisioning with murakumo
 
 `murakumo` already provisions the Mac fleet over Tailscale and installs resident
-nodes (`bb provision`, `bb up`). For the fleet coordinator, per node:
+nodes (`kbb -M:provision`, `kbb -M:up`). For the fleet coordinator, per node:
 
 ```bash
 # on the operator laptop — provision both PCs (installs kotoba + resident node)
-bb provision all
-bb up all
+kbb -M:provision all
+kbb -M:up all
 
 # each node runs its agent driver against the shared graph (env-configured):
 FLEET_GRAPH=k51q…            # shared IPNS name
 FLEET_ROLE=agent             # or `governor` on exactly one node
 OR_KEY=…                     # OpenRouter (or murakumo: local gateway) for kotoba-code
-clojure -M:dev -m za-actor.node   # loops agent-round! (agent) / govern! (governor)
+kbb -M:dev -m za-actor.node   # loops agent-round! (agent) / govern! (governor)
 
 # watch the whole fleet from the operator laptop:
-bb fleet <(kotoba graph export $FLEET_GRAPH)   # kotoba.fleet.view snapshot
+kbb -M:fleet <(kotoba graph export $FLEET_GRAPH)   # kotoba.fleet.view snapshot
 ```
 
 `za-actor.node/-main` is the env-driven launcher: it reads `FLEET_ROLE` /
@@ -108,7 +108,7 @@ deploy/install-node.sh --role governor --node pc1-gov --graph "$FLEET_GRAPH" --i
 deploy/install-node.sh --dry-run …          # render + print the unit, install nothing
 ```
 
-`murakumo bb provision`/`bb up` place the kotoba binaries + the agent components +
+`murakumo bb provision`/`kbb -M:up` place the kotoba binaries + the agent components +
 the one governor unit across the Tailscale fleet; `deploy/systemd/fleet-node@.{service,timer}`
 are the Linux equivalents for the governor. The rendered LaunchAgent is `plutil`-valid.
 
