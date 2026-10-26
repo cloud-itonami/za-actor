@@ -12,7 +12,7 @@
        io.github.com-junkawasaki/langgraph-clj
         {:local/root "../../kotoba-lang/langgraph"}
         io.github.kotoba-lang/kotoba-fleet
-        {:local/root "../../kotoba-lang/kotoba-fleet"}
+        {:local/root "../../kotoba-lang/kotoba/lib/kotoba.kotobaFleet"}
         ;; kotoba-lang/json, not org.clojure/data.json. `json.data-json` is the
         ;; data.json-shaped surface (read-str / write-str, trailing kwargs,
         ;; :key-fn), so the two call sites below are unchanged in shape. It
